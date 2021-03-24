@@ -2,6 +2,19 @@
 
 This is a docker-compose configuration to run a TheHive 4.0.2 + Cortex 3.1.0 instances with a Cassandra 3.1.1 database backend for TheHive and Elasticsearch 7.8.1 backend for Cortex.
 
+## TODO
+
+The following items require your attention:
+
+- [ ] Update `thehive.conf` and `cortex.conf` files for nginx as appropriate
+  - [ ] Update `server_name` for your fqdn
+  - [ ] Review/modify the configuration for your requirements
+- [ ] Add your certificates to `./vol/ssl`
+- [ ] Update `./vol/nginx/certs.conf` with the certificate file names
+- [ ] Use the local port (9001) to connect to Cortex to initiate Cortex
+- [ ] Create a user for thehive and copy the api key
+- [ ] Update `.env` with the `CORTEX_KEY` after Cortex has been setup and configured.  A restart of TheHive node is required.
+
 ## .env File
 
 Populate the .env with the following entries.  
@@ -41,14 +54,3 @@ Followed by restarting the `elasticsearch` node with:
 ```bash
 docker-compose up -d elasticsearch
 ```
-
-## TODO
-
-The following items require your attention:
-
-- [ ] Update `thehive.conf` and `cortex.conf` files for nginx as appropriate
-  - [ ] Update `server_name` for your fqdn
-  - [ ] Review/modify the configuration for your requirements
-- [ ] Add your certificates to `./vol/ssl`
-- [ ] Update `./vol/nginx/certs.conf` with the certificate file names
-- [ ] Update `.env` with the `CORTEX_KEY` after Cortex has been setup and configured.  A restart of TheHive node is required.

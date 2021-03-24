@@ -4,6 +4,8 @@ services:
     container_name: nginx
     hostname: nginx
     image: nginx:1.19.5
+    depends_on:
+      - thehive
     ports:
       - 80:80
       - 443:443
@@ -79,6 +81,8 @@ services:
     networks:
       - proxy
       - backend
+    ports:
+      - '0.0.0.0:9001:9001'
     command:
       --job-directory ${JOB_DIRECTORY}
     environment:
@@ -90,4 +94,3 @@ services:
 networks:
   backend:
   proxy:
-    external: true
